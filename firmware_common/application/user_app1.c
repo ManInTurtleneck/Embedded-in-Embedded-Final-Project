@@ -5,7 +5,9 @@ should be replaced by something specific to the task.
 
 THIS IS TO TEST CHANGES
 ----------------------------------------------------------------------------------------------------------------------
-To start a new task using this user_app1 as a template:
+
+TEST ADDING THIS LINE AND DELETING THE LINE BELOW
+
  1. Copy both user_app1.c and user_app1.h to the Application directory
  2. Rename the files yournewtaskname.c and yournewtaskname.h
  3. Add yournewtaskname.c and yournewtaskname.h to the Application Include and Source groups in the IAR project
