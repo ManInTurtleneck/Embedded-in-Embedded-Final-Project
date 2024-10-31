@@ -92,16 +92,13 @@ Promises:
 */
 void UserApp1Initialize(void)
 {
-  /* If good initialization, set state to Idle */
-  if( 1 )
-  {
-    UserApp1_pfStateMachine = UserApp1SM_Idle;
-  }
-  else
-  {
-    /* The task isn't properly initialized, so shut it down and don't run */
-    UserApp1_pfStateMachine = UserApp1SM_Error;
-  }
+  LedOn(BLUE);
+
+  LedToggle(PURPLE);
+
+  LedBlink(RED, LED_2HZ);
+
+  LedPWM(WHITE, LED_PWM_5);
 
 } /* end UserApp1Initialize() */
 
