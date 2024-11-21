@@ -142,6 +142,9 @@ State Machine Function Definitions
 /* What does this state do? */
 static void UserApp1SM_Idle(void)
 {
+  static u16 au16Notes[] = {C4, D4, E4, F4, G4, A4, B4, C5};
+  static u8 u8NoteIndex = 0;
+
   if (WasButtonPressed(BUTTON0)) {
     ButtonAcknowledge(BUTTON0);
     PWMAudioSetFrequency(BUZZER1, 262);
