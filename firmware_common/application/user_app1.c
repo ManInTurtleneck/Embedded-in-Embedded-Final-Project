@@ -142,28 +142,39 @@ State Machine Function Definitions
 /* What does this state do? */
 static void UserApp1SM_Idle(void)
 {
-  static u16 au16Notes[] = {C4, D4, E4, F4, G4, A4, B4, C5};
+  static u16 au16Notes[] = {C4, D4, E4, G4};
   static u8 u8NoteIndex = 0;
 
-  if (WasButtonPressed(BUTTON0)) {
-    ButtonAcknowledge(BUTTON0);
-    u8NoteIndex++;
-    if(u8NoteIndex == (u8)(sizeof(au16Notes) / sizeof(u16)))
-      u8NoteIndex = 0;
-    PWMAudioSetFrequency(BUZZER1, au16Notes[u8NoteIndex]);
-  }
 
-  if (WasButtonPressed(BUTTON1)) {
-    ButtonAcknowledge(BUTTON1);
-    PWMAudioSetFrequency(BUZZER1, 293);
-  }
+  
 
-  if (IsButtonPressed(BUTTON0) || IsButtonPressed(BUTTON1))
+  if (IsButtonPressed(BUTTON0))
     PWMAudioOn(BUZZER1);
   else
     PWMAudioOff(BUZZER1);
+
+  if (WasButtonPressed(BUTTON1)) {
+    ButtonAcknowledge(BUTTON1);
+    u8NoteIndex++;
+    LedOff(BLUE0);
+    LedOff(BLUE1);
+    LedOff(BLUE2);
+    LedOff(BLUE3);
+    if(u8NoteIndex == ((u8)(sizeof(au16Notes) / sizeof(u16))))
+      u8NoteIndex = 0;
+    PWMAudioSetFrequency(BUZZER1, au16Notes[u8NoteIndex]);
+  }
+  if (u8NoteIndex == 0)
+    LedOn(BLUE0);
+  if (u8NoteIndex == 1)
+    LedOn(BLUE1);
+  if (u8NoteIndex == 2)
+    LedOn(BLUE2);
+  if (u8NoteIndex == 3)
+    LedOn(BLUE3);
 } /* end UserApp1SM_Idle() */
      
+  
 
 /*-------------------------------------------------------------------------------------------------------------------*/
 /* Handle an error */
