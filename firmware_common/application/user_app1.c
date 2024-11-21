@@ -92,6 +92,8 @@ Promises:
 */
 void UserApp1Initialize(void)
 {
+  for(u8 i = 0; i < U8_TOTAL_LEDS; i++)
+    LedOff( (LedNameType)i );
   /* If good initialization, set state to Idle */
   if( 1 )
   {
@@ -140,7 +142,41 @@ State Machine Function Definitions
 /* What does this state do? */
 static void UserApp1SM_Idle(void)
 {
-     
+  static bRed1Blink = FALSE;
+  static LedRateType aeBlinkRate[] = {LED_1HZ, LED_2HZ, LED_4HZ, LED_8HZ};
+  static u8 u8BlinkRateIndex = 0;
+  
+  if (IsButtonHeld(BUTTON0, 2000))
+    LedOn(LCD_BL);
+  else
+    LedOff(LCD_BL);
+
+  if (IsButtonPressed(BUTTON0))
+    LedOn(BLUE0);
+  else
+    LedOff(BLUE0);
+
+  if (WasButtonPressed(BUTTON1)) {
+    ButtonAcknowledge(BUTTON1);
+    if(!bRed1Blink) {
+      bRed1Blink = TRUE;
+      LedBlink(RED1, aeBlinkRate[u8BlinkRateIndex]);
+    }
+    else {
+      bRed1Blink = FALSE;
+      LedOff(RED1);
+    }
+  }
+  if(bRed1Blink && IsButtonPressed(BUTTON0)) {
+    if (WasButtonPressed(BUTTON0)) {
+      ButtonAcknowledge(BUTTON0);
+      if(u8BlinkRateIndex == 3)
+        u8BlinkRateIndex = 0;
+      else
+        u8BlinkRateIndex++;
+      LedBlink(RED1, aeBlinkRate[u8BlinkRateIndex]);
+    }
+  }
 } /* end UserApp1SM_Idle() */
      
 
