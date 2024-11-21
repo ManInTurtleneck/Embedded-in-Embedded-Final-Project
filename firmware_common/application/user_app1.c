@@ -147,7 +147,10 @@ static void UserApp1SM_Idle(void)
 
   if (WasButtonPressed(BUTTON0)) {
     ButtonAcknowledge(BUTTON0);
-    PWMAudioSetFrequency(BUZZER1, 262);
+    u8NoteIndex++;
+    if(u8NoteIndex == (u8)(sizeof(au16Notes) / sizeof(u16)))
+      u8NoteIndex = 0;
+    PWMAudioSetFrequency(BUZZER1, au16Notes[u8NoteIndex]);
   }
 
   if (WasButtonPressed(BUTTON1)) {
