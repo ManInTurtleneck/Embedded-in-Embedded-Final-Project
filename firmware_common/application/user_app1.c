@@ -146,16 +146,16 @@ static void UserApp1SM_Idle(void)
 {
   static bool unlock = TRUE;
   static int counter = 0;
-  int passKey[] = {0, 1, 1, 0}, enteredPhrase[] = {0, 0, 0, 0};
+  static int passKey[] = {0, 1, 1, 0}, enteredPhrase[] = {0, 0, 0, 0};
   
   
 
   if(IsButtonHeld(BUTTON0, 3000) && IsButtonHeld(BUTTON1, 3000)) {
-    for (int i = 0; i <= counter; i++) {
+    for (int i = 0; i < counter; i++) {
       if (enteredPhrase[i] != passKey[i])
         unlock = FALSE;
     }
-    if (unlock) {
+    if (unlock && counter != 0) {
       LedOff(RED3);
       unlock = FALSE;
     } else 
@@ -197,3 +197,16 @@ static void UserApp1SM_Error(void)
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* End of File                                                                                                        */
 /*--------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
