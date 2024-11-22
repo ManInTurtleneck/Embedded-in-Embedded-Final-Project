@@ -146,33 +146,43 @@ static void UserApp1SM_Idle(void)
 {
   static bool unlock = TRUE;
   static int counter = 0;
-  static u16 timer = 0;
+  static u16 timer = 3000;
   static bRed1Blink = FALSE;
   static int passKey[] = {0, 1, 1, 0}, enteredPhrase[] = {0, 0, 0, 0};
   
   
-
+  
   if(IsButtonHeld(BUTTON0, 3000) && IsButtonHeld(BUTTON1, 3000)) {
+    ButtonAcknowledge(BUTTON0);
+    ButtonAcknowledge(BUTTON1);
     for (int i = 0; i < counter; i++) {
       if (enteredPhrase[i] != passKey[i])
         unlock = FALSE;
     }
     if (unlock && counter != 0) {
       LedOff(RED3);
-      LedOff(GREEN3);
-      LedBlink(RED3, LED_1HZ);
-      while(timer < 3000)
-        timer++;
-      if(timer == 3000)
-        timer = 0;
-      LedOff(RED3);
-      LedOn(RED3);
-      LedOn(GREEN3);
-      unlock = FALSE;
-    } else 
-    
+    } 
   } 
 
+  if (!unlock) {
+      if (timer == 3000) {
+        LedOff(RED3);
+        LedOff(GREEN3);
+        LedBlink(RED3, LED_1HZ);
+      }
+      
+      if (timer == 0) {
+        LedOff(RED3);
+        LedOn(RED3);
+        LedOn(GREEN3);
+        LedOff(BLUE0);
+        LedOff(BLUE1);
+        unlock = TRUE;
+        counter = 0;
+        timer = 3001;
+      }
+      timer--;
+    }
   if (counter < (sizeof(enteredPhrase) / sizeof(int))) {
     if (WasButtonPressed(BUTTON0)) {
       ButtonAcknowledge(BUTTON0);
