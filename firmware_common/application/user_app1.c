@@ -146,6 +146,7 @@ static void UserApp1SM_Idle(void)
 {
   static bool unlock = TRUE;
   static int counter = 0;
+  static bRed1Blink = FALSE;
   static int passKey[] = {0, 1, 1, 0}, enteredPhrase[] = {0, 0, 0, 0};
   
   
@@ -157,9 +158,11 @@ static void UserApp1SM_Idle(void)
     }
     if (unlock && counter != 0) {
       LedOff(RED3);
+      LedOff(GREEN3);
+      LedBlink(RED3, LED_1HZ);
       unlock = FALSE;
     } else 
-    LedOff(GREEN3);
+    
   } 
 
   if (counter < (sizeof(enteredPhrase) / sizeof(int))) {
