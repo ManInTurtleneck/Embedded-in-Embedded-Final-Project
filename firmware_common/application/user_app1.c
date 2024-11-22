@@ -160,6 +160,8 @@ static void UserApp1SM_Idle(void)
       LedOff(RED3);
       LedOff(GREEN3);
       LedBlink(RED3, LED_1HZ);
+      SystemSleep();
+      LedOff(RED3);
       unlock = FALSE;
     } else 
     
