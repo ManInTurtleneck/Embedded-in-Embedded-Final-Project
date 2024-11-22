@@ -146,6 +146,7 @@ static void UserApp1SM_Idle(void)
 {
   static bool unlock = TRUE;
   static int counter = 0;
+  static u16 timer = 0;
   static bRed1Blink = FALSE;
   static int passKey[] = {0, 1, 1, 0}, enteredPhrase[] = {0, 0, 0, 0};
   
@@ -160,8 +161,13 @@ static void UserApp1SM_Idle(void)
       LedOff(RED3);
       LedOff(GREEN3);
       LedBlink(RED3, LED_1HZ);
-      SystemSleep();
+      while(timer < 3000)
+        timer++;
+      if(timer == 3000)
+        timer = 0;
       LedOff(RED3);
+      LedOn(RED3);
+      LedOn(GREEN3);
       unlock = FALSE;
     } else 
     
