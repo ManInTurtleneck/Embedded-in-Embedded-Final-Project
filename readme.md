@@ -1,4 +1,4 @@
-# This was a final project from the Embedded In Embedded Group at University of Calgary in collaboration with Chamer5465. Please view his repository at https://github.com/Chamer5465/EIE_Project/tree/master
+# This was a final project from the Embedded In Embedded Group at University of Calgary in collaboration with Chamer5465. We forked the master branch provided to us by the EIE group and over the course of 2 months created a game of battleship that shocks you. Unfortunately my commits did not appear on my profile, please view my partners repository at https://github.com/Chamer5465/EIE_Project/tree/master
 
 ## Compiling reference
 
