@@ -1,11 +1,6 @@
-# Embedded in Embedded Development
-
-[TOC]
-
-## Setup
-
-To install the necessary tools to compile the project see [setup.md](docs/setup.md)
-To set up the VSCode development environment see [vscode.md](docs/vscode.md)
+# This was a final project from the Embedded In Embedded Group
+# at University of Calgary in collaboration with Chamer5465.
+# Please view his repository at https://github.com/Chamer5465/EIE_Project/tree/master
 
 ## Compiling reference
 
