@@ -192,8 +192,6 @@ def build(ctx):
         "-std=c99",
         # Tell GCC to generate all debug info
         "-ggdb",
-        # Set optimizations for best debugging.
-        "-Og",
         # Allow "asm" keyword, old CMSIS headers use it.
         "-fasm",
         # Warning config. Turn on most, but disable a few that are commonly triggered
@@ -254,7 +252,9 @@ def build(ctx):
     ]
     includes = ["firmware_common/application/blade"]
     defines = []
+    uses = []
     target = ""
+    optlevel = "g"  # By default debugging-friendly.
 
     if ctx.env.BOARD == "ASCII":
         work_folders += ascii_folders
@@ -262,15 +262,29 @@ def build(ctx):
         target = "firmware-ascii"
     elif ctx.env.BOARD == "DOT_MATRIX":
         work_folders += dot_matrix_folders
-        defines += ["EIE_DOTMATRIX", "EIE_NO_CAPTOUCH"]
+        defines += ["EIE_DOTMATRIX"]
         target = "firmware-dot-matrix"
+        uses += ["sam3u-32qt-k-8rs-gnu"]
     else:
         ctx.fatal("No board type specified.")
+
+    cflags += [f"-O{optlevel}"]
 
     for folder in work_folders:
         source += ctx.srcnode.ant_glob(f"{folder}/*.s")  # assembly files
         source += ctx.srcnode.ant_glob(f"{folder}/*.c")  # C source
         includes.append(folder)  # Make sure the matching headers can be found.
+
+    # For libraries waf normally expects that you are defining targets that build those libraries,
+    # however in the case of qtouch we only have a pre-compiled lib provided by Microchip.
+    # This read_stlib() function sets up a fake target that we can later refer to in a use statement
+    # to link against.
+    ctx.read_stlib(
+        "sam3u-32qt-k-8rs-gnu",
+        paths=[
+            ctx.srcnode.find_node("firmware_dotmatrix/libraries/captouch/bin"),
+        ],
+    )
 
     # The program() function creates a task gen with all the features needed to compile+link based
     # on what source files you specify (stepping through with a python debugger can be nice to
@@ -288,6 +302,7 @@ def build(ctx):
         linkflags=linkflags,
         defines=defines,
         linker_script="firmware_common/bsp/sam3u2.ld",
+        use=uses,
     )
 
     if ctx.options.flash:
@@ -380,8 +395,7 @@ def get_jlink_srch_path(exe_name: str):
         install_roots = [
             "C:\\Program Files\\SEGGER\\",
             "C:\\Program Files (x86)\\SEGGER\\",
-            "D:\\SEGGER\\JLink_V798i",
-            "C:\\Program Files\\SEGGER\\JLink_V798i"
+            "D:\\SEGGER\\",
         ]
 
     elif Utils.unversioned_sys_platform() == "darwin":
@@ -445,7 +459,10 @@ def get_gcc_srch_path_win32():
     import winreg
 
     REGISTRY_PATHS = [(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\ARM")]
-    INSTALL_PATHS = ["C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\13.3 rel1\\arm-none-eabi"]
+    INSTALL_PATHS = [
+        "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi",
+        "D:\\Arm_GNU_Toolchain\\13_3_rel1\\arm-none-eabi",
+    ]
 
     gcc_vers = defaultdict(set)  # Map from version numbers to discovered paths.
 
@@ -453,7 +470,10 @@ def get_gcc_srch_path_win32():
         pth = pathlib.Path(pth) / "bin"
         ver = check_gcc_ver(pth, ext="exe")
         if ver:
-            gcc_vers[ver].add(str(pth))
+            # Some older/alternate toolchains use the year as the current version number
+            # (eg. "2021"). For EiE we will just ignore them.
+            if ver[0] < 1000:
+                gcc_vers[ver].add(str(pth))
 
     for root, subk in REGISTRY_PATHS:
         try:
@@ -474,6 +494,9 @@ def get_gcc_srch_path_win32():
 
     for install_pth in INSTALL_PATHS:
         install_pth = pathlib.Path(install_pth)
+        if not install_pth.exists():
+            continue
+
         for pth in install_pth.iterdir():
             check(pth)
 
