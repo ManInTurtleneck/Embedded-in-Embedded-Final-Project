@@ -6,9 +6,9 @@
 > A custom embedded system with foundational libraries by the EiE & Garmin team. It provides a **dot-matrix display**, **LEDs**, **buzzer**, **ANT (wireless) communication**, **buttons**, and **3.3 V toggleable output pins**.
 
 <!-- HERO: leave room for image -->
-![Project hero (add your photo/GIF of gameplay here)](docs/hero.jpg)
+![](docs/showcase.mp4)
 
-**Provenance / Base Code:** We forked the master branch provided by the EiE group. Some commits didn’t show up on my profile; please see my partner’s repository for the full history:  
+**Provenance / Base Code:** We forked the master branch provided by the EiE group. ALL OF MY COMMITS didn’t show up on my profile; please see my partner’s repository for the full history:  
 👉 https://github.com/Chamer5465/EIE_Project/tree/master
 
 ---
@@ -18,7 +18,6 @@
 - [Features](#features)
 - [Hardware Hookups](#hardware-hookups)
 - [Safety First ⚠️](#safety-first-️)
-- [Demo](#demo)
 - [Build & Flash (Waf)](#build--flash-waf)
 - [How It Works](#how-it-works)
 - [Design Goals](#design-goals)
@@ -69,13 +68,6 @@ Additional notes to include:
 
 ---
 
-## Demo
-
-<!-- leave room for image -->
-![Gameplay GIF / short video of a hit triggering LEDs/buzzer + TENS](docs/demo.gif)
-
----
-
 ## Build & Flash (Waf)
 
 ### Quick Start
@@ -106,20 +98,6 @@ python waf build -F
 
 ---
 
-## How It Works
-
-- **State machine** manages game phases:
-  1. **Init/Setup** → hardware init, seed RNG, place ships  
-  2. **Pair/Comm** (ANT) → exchange moves (or simulate for single-board)  
-  3. **Turn Loop** → input, validate, update board, render  
-  4. **Hit Event** → LEDs/buzzer feedback + **relay toggles TENS**  
-  5. **Win/Lose** → summary screen / reset
-
-<!-- leave room for image -->
-![State machine diagram / flowchart](docs/state-machine.png)
-
----
-
 ## Design Goals
 
 - Short-form **Battleship™**
@@ -143,14 +121,11 @@ python waf build -F
 
 - Coding with **states** for embedded apps  
   <!-- leave room for image -->
-  ![Example state diagram / whiteboard sketch](docs/learned-states.png)
+  ![State machine diagram / flowchart](docs/state-machine.jpg)
 
 - Working under **time constraints**
 - **Wireless** communication (ANT)
 - **Hard faults** & low-level **debugging**  
-  <!-- leave room for image -->
-  ![Hard fault trace / debugger screenshot](docs/hardfault-trace.png)
-
 - **Transistors** & **relays** for safe switching
 - Accessing / decoding **registers**
 - General **low-level** embedded coding
@@ -172,22 +147,3 @@ python waf build -F
 - **Full history & reference repo**: https://github.com/Chamer5465/EIE_Project/tree/master  
 - Thanks to EiE & Garmin teams for the devboard and libraries.
 
----
-
-## License
-
-TBD (recommend **MIT** or **BSD-3-Clause** for educational projects). Add a `LICENSE` file at repo root.
-
----
-
-### Appendix: Devboard Capabilities (for newcomers)
-
-- **Display:** dot-matrix  
-- **Indicators:** LEDs  
-- **Audio:** buzzer  
-- **I/O:** buttons, 3.3 V GPIO (toggleable)  
-- **Radio:** ANT wireless
-
-<!-- Optional extra: wiring diagram -->
-<!-- leave room for image -->
-![Schematic / wiring diagram](docs/wiring-diagram.png)
