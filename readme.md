@@ -32,9 +32,15 @@
 
 ## What I Contributed
 
-- Circuit Design & Prototyping
-- CAD Handle / Holder Design & Prototyping
-- 
+- Designed and soldered the relay + transistor switching circuit interfacing with the TENS unit.
+- Designed, prototyped, and 3D-printed the handle/holder in Fusion 360.
+- Created the presentation materials.
+- Implemented key game logic and app state code, including:
+    `placement`, `sendShot`, `UserApp1Initialize`, `ledsOff`, 
+    `UserApp1RunActiveState`, `UserApp1SM_WaitAntReady`, 
+    `UserApp1SM_WaitChannelOpen`, `UserApp1SM_Error`, 
+    `endGame`, `shockingFunction`, `checkHit`, `displayMessage`.
+- Coded `displayGrid` + `shoot` in collaboration with Chamer5465.
 
 ---
 
