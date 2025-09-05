@@ -15,6 +15,7 @@
 
 ## Table of Contents
 
+- [What I Contributed](#what-i-contributed)
 - [Features](#features)
 - [Hardware Hookups](#hardware-hookups)
 - [Safety First ⚠️](#safety-first-️)
@@ -26,6 +27,14 @@
 - [Challenges We Hit](#challenges-we-hit)
 - [Credits](#credits)
 - [License](#license)
+
+---
+
+## What I Contributed
+
+- Circuit Design & Prototyping
+- CAD Handle / Holder Design & Prototyping
+- 
 
 ---
 
