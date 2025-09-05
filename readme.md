@@ -6,7 +6,7 @@
 > A custom embedded system with foundational libraries by the EiE & Garmin team. It provides a **dot-matrix display**, **LEDs**, **buzzer**, **ANT (wireless) communication**, **buttons**, and **3.3 V toggleable output pins**.
 
 <!-- HERO: leave room for image -->
-![](docs/showcase.gif)
+![](docs/showcase.jpg)
 
 **Provenance / Base Code:** We forked the master branch provided by the EiE group. ALL OF MY COMMITS didn’t show up on my profile; please see my partner’s repository for the full history:  
 👉 https://github.com/Chamer5465/EIE_Project/tree/master
@@ -18,8 +18,8 @@
 - [Features](#features)
 - [Hardware Hookups](#hardware-hookups)
 - [Safety First ⚠️](#safety-first-️)
+- [Demo](#demo)
 - [Build & Flash (Waf)](#build--flash-waf)
-- [How It Works](#how-it-works)
 - [Design Goals](#design-goals)
 - [What We’d Change in Rev. 2](#what-wed-change-in-rev-2)
 - [What We Learned](#what-we-learned)
@@ -68,6 +68,13 @@ Additional notes to include:
 
 ---
 
+## Demo
+
+<!-- leave room for image -->
+![Gameplay GIF / short video of the placement and shoot process](docs/showcase.gif)
+
+---
+
 ## Build & Flash (Waf)
 
 ### Quick Start
@@ -103,6 +110,8 @@ python waf build -F
 - Short-form **Battleship™**
 - **Attention-grabbing** shock feedback
 - Exercise the **full capabilities** of the EiE Board
+
+![Fusion 360 Handle Design](docs/Fusion.jpg)
 
 ---
 
