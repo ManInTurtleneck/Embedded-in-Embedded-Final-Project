@@ -126,7 +126,8 @@ python waf build -F
 - **Attention-grabbing** shock feedback
 - Exercise the **full capabilities** of the EiE Board
 
-![Fusion 360 Handle Design](docs/fusion.png)
+![Fusion 360 Handle Design](docs/Fusion.png)
+
 Download STL on my [Thingiverse](https://www.thingiverse.com/thing:7136728)
 
 ---
