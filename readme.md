@@ -64,8 +64,8 @@ Additional notes to include:
 
 ## Hardware Hookups
 <!-- leave room for image -->
-  ![Hardware Hookup](docs/wiring.jpg)
-  
+  ![Hardware Hookup](docs/Wiring.jpg)
+
 - **TENS unit output** is gated by a **relay** driven through a **transistor** from a 3.3 V GPIO.
 - Ensure the relay coil voltage and driver transistor (with base/gate resistor) match the board’s capabilities.
 - Add a **flyback diode** across the relay coil if required by your relay spec.
