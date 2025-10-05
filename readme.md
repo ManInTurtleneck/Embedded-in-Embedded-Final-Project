@@ -6,7 +6,7 @@
 > A custom embedded system with foundational libraries by the EiE & Garmin team. It provides a **dot-matrix display**, **LEDs**, **buzzer**, **ANT (wireless) communication**, **buttons**, and **3.3 V toggleable output pins**.
 
 <!-- HERO: leave room for image -->
-![](docs/showcase.jpg)
+![Gameplay GIF / short video of the placement and shoot process](docs/showcase.gif)
 
 **Provenance / Base Code:** We forked the master branch provided by the EiE group. ALL OF MY COMMITS didn’t show up on my profile; please see my partner’s repository for the full history:  
 👉 https://github.com/Chamer5465/EIE_Project/tree/master
@@ -88,7 +88,7 @@ Additional notes to include:
 ## Demo
 
 <!-- leave room for image -->
-![Gameplay GIF / short video of the placement and shoot process](docs/showcase.gif)
+[![Gameplay Video](https://img.youtube.com/vi/1HpkYve6Y0s/hqdefault.jpg)](https://youtu.be/1HpkYve6Y0s)
 
 ---
 
