@@ -85,9 +85,10 @@ Additional notes to include:
 
 ---
 
-## Demo
+## Watch The YouTube Demo Video:
 
 <!-- leave room for image -->
+
 [![Gameplay Video](https://img.youtube.com/vi/1HpkYve6Y0s/hqdefault.jpg)](https://youtu.be/1HpkYve6Y0s)
 
 ---
