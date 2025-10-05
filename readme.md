@@ -7,6 +7,7 @@
 
 <!-- HERO: leave room for image -->
 ![Gameplay GIF / short video of the placement and shoot process](docs/showcase.gif)
+Watch The YouTube Demo Video: [YouTube](https://youtu.be/1HpkYve6Y0s)
 
 **Provenance / Base Code:** We forked the master branch provided by the EiE group. ALL OF MY COMMITS didn’t show up on my profile; please see my partner’s repository for the full history:  
 👉 https://github.com/Chamer5465/EIE_Project/tree/master
