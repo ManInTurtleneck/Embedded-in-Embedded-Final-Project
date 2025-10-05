@@ -91,6 +91,8 @@ Additional notes to include:
 
 [![Gameplay Video](https://img.youtube.com/vi/1HpkYve6Y0s/hqdefault.jpg)](https://youtu.be/1HpkYve6Y0s)
 
+Link: [YouTube](https://youtu.be/1HpkYve6Y0s)
+
 ---
 
 ## Build & Flash (Waf)
